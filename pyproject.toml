@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "timeitX"
-version = "1.0.0"
+version = "1.0.1"
 description = "timeitX - Function Execution Time Logger"
 authors = ["Nitish Sai Kommaraju"]
 readme = "README.md"
