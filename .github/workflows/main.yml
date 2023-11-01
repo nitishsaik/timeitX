@@ -1,0 +1,61 @@
+name: Code Quality Checks And Publish
+permissions:
+  contents: write
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Install poetry
+        run: pip install poetry
+
+      - name: Install dependencies.
+        run: poetry install
+
+      - name: Run MyPy
+        run: poetry run mypy timeitX
+
+      - name: Run Black
+        run: poetry run black --check timeitX
+
+      - name: Run isort
+        run: poetry run isort --check-only timeitX
+      
+      - name: Generate coverage report
+        run: poetry run pytest --cov timeitX --cov-report=xml
+
+      - name: Run Bandit
+        run: poetry run bandit timeitX
+
+      - name: Get Python Module Version
+        run: |
+          MODULE_VERSION=$(poetry version --short)
+          echo "MODULE_VERSION=$MODULE_VERSION" >> $GITHUB_ENV
+      - name: Publish to PyPi
+        run: poetry publish --build
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
+      
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: v${{ env.MODULE_VERSION }}
+          generate_release_notes: true
+          tag_name: v${{ env.MODULE_VERSION }}
+          token: ${{ secrets.RELEASE_GITHUB_TOKEN }}
+          files: dist/*
+
+
+
