@@ -30,6 +30,9 @@ from timeitX import timeitX
 
 # Define your logger
 import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
 logger = logging.getLogger("timeitX")
 
 @timeitX(name="My Function", logger=logger)
