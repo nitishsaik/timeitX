@@ -1,8 +1,12 @@
 # timeitX - Function Execution Time Logger
 
+[![Supported Python Versions](https://img.shields.io/pypi/pyversions/timeitX/1.0.1)](https://pypi.org/project/timeitX/) 
+![GitHub issues](https://img.shields.io/github/issues/nitishsaik/timeitX)
+[![PyPI version](https://badge.fury.io/py/timeitX.svg)](https://badge.fury.io/py/timeitX)
 ![GitHub](https://img.shields.io/github/license/nitishsaik/timeitX)
 ![GitHub](https://img.shields.io/github/issues/nitishsaik/timeitX)
 ![GitHub](https://img.shields.io/github/stars/nitishsaik/timeitX)
+[![Downloads](https://pepy.tech/badge/timeitX/month)](https://pepy.tech/project/timeitX)
 
 `timeitX` is a Python decorator that logs the execution time of functions, both for synchronous and asynchronous functions.
 
